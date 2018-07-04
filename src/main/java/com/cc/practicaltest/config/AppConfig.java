@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 public class AppConfig {
     private static final String dbDriver = "com.mysql.jdbc.Driver";
-    private static final String dbUrl = "jdbc:mysql://localhost:3306/practicaltest";
+    private static final String dbUrl = "jdbc:mysql://localhost:3306/practicaltest?useSSL=false";
     private static final String dbUsername = "syslocal";
     private static final String dbPassword = "admin";
 

@@ -1,5 +1,6 @@
 package com.cc.practicaltest;
 
+import ch.qos.logback.classic.util.ContextInitializer;
 import com.cc.practicaltest.app.PracticalTestService;
 import com.cc.practicaltest.config.AppConfig;
 import org.slf4j.Logger;
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
  */
 public class App 
 {
-    private static Logger log = LoggerFactory.getLogger(App.class);
+    private static final Logger log = LoggerFactory.getLogger(App.class);
 
     public static void main(String[] args) {
         log.info("Starting application...");
