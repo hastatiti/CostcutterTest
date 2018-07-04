@@ -207,7 +207,7 @@ CREATE TABLE ordered_vehicles (
 SET @n = 0;
 
 INSERT INTO ordered_vehicles (order_number, model_name, trim_name, engine_designation, colour, expected_delivery_date, actual_delivery_date) 
-SELECT (@n := @n + 1) AS row_number, 
+SELECT @n := @n + 1, 
        model_name, 
        trim_name, 
        engine_designation,
@@ -216,7 +216,19 @@ SELECT (@n := @n + 1) AS row_number,
        NULL
 FROM models_engines_intersect, trims, generator_1m
 WHERE RAND() > 0.5
-AND @n < @orders;  
+AND @n < @orders
+UNION
+SELECT FLOOR(RAND() * @orders),
+       model_name, 
+       trim_name, 
+       engine_designation,
+       ELT(FLOOR(1 + (RAND() * 6)), "Red", "White", "Black", "Silver", "Blue", "Grey") AS colour,
+       CURRENT_DATE,
+       NULL
+FROM models_engines_intersect, trims, generator_1m
+WHERE RAND() > 0.5
+AND (@n := @n + 1) < @orders * 1.1;
+
 
 UPDATE orders o 
 JOIN (SELECT v.order_number, SUM(m.base_cost + mei.additional_cost + t.additional_cost) AS total_base_cost
