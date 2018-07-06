@@ -227,7 +227,7 @@ SELECT FLOOR(RAND() * @orders),
        NULL
 FROM models_engines_intersect, trims, generator_1m
 WHERE RAND() > 0.5
-AND (@n := @n + 1) < @orders * 1.1;
+AND (@n := @n + 1) < @orders * 1.25;
 
 
 UPDATE orders o 
@@ -262,7 +262,8 @@ CREATE TABLE invoices (
 INSERT INTO invoices (order_number, invoice_value, settlement_date)
 SELECT o.order_number,
        sale_price - deposit,
-       MAX(actual_delivery_date) + INTERVAL FLOOR(RAND() * 28) DAY
+       IF(RAND() < 0.95, MAX(actual_delivery_date) + INTERVAL FLOOR(RAND() * 28) DAY, NULL) 
 FROM orders o
 JOIN ordered_vehicles v ON o.order_number = v.order_number
-GROUP BY o.order_number;     
+GROUP BY o.order_number
+HAVING RAND() > 0.1;
