@@ -218,7 +218,7 @@ FROM models_engines_intersect, trims, generator_1m
 WHERE RAND() > 0.5
 AND @n < @orders
 UNION
-SELECT FLOOR(RAND() * @orders),
+SELECT CEIL(RAND() * @orders),
        model_name, 
        trim_name, 
        engine_designation,
@@ -267,3 +267,11 @@ FROM orders o
 JOIN ordered_vehicles v ON o.order_number = v.order_number
 GROUP BY o.order_number
 HAVING RAND() > 0.1;
+
+DROP VIEW IF EXISTS generator_16;
+DROP VIEW IF EXISTS generator_256;
+DROP VIEW IF EXISTS generator_4k;
+DROP VIEW IF EXISTS generator_64k;
+DROP VIEW IF EXISTS generator_1m;
+DROP FUNCTION IF EXISTS generate_fname;
+DROP FUNCTION IF EXISTS generate_lname;
