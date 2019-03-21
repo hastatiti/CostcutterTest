@@ -15,9 +15,9 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 public class AppConfig {
     private static final String dbDriver = "com.mysql.jdbc.Driver";
-    private static final String dbUrl = "jdbc:mysql://localhost:3306/practicaltest?useSSL=false";
-    private static final String dbUsername = "syslocal";
-    private static final String dbPassword = "admin";
+    private static final String dbUrl = "jdbc:mysql://practical-test.c2qqcx7fu6oj.us-east-2.rds.amazonaws.com:3306/practicaltest?useSSL=false";
+    private static final String dbUsername = "test_user";
+    private static final String dbPassword = "testDB@123";
 
     @Bean
     public DataSource dataSource() {
