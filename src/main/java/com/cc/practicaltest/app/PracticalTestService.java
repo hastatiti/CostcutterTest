@@ -26,5 +26,12 @@ public class PracticalTestService {
         List<Order> orders = repository.getOrdersOnOrAfter(date);
         log.info("Order count since {}: {}", date, orders.size());
     }
-
+    
+    /*Display the final result to log file
+    Tried to use similar approach to existing business logic*/
+    public void showUninvoiced() {
+    	String uninvoicedOrders = repository.getUninvoicedOrders() ;
+    	log.info("order number ,order date,total vehicles ordered,forename "
+    			+ "and surname,remaining balance of \nthe uninvoiced orders in the last 28 days : \n"  + uninvoicedOrders);
+    }
 }

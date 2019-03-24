@@ -26,7 +26,8 @@ public class App
 
         // Example invocation
         service.countOrders(LocalDate.of(2017,1,1));
-
-        // TODO - Subsequent invocation(s)
+        
+        //starting point of invokation of uninvoiced orders 
+        service.showUninvoiced();
     }
 }

@@ -27,8 +27,9 @@ public class PracticalTestServiceTest {
 
     @Test
     public void countOrdersMustCallRepositoryExactlyOnceWithSuppliedDate() {
-        LocalDate testDate = LocalDate.of(2018, 6, 1);
+        LocalDate testDate = LocalDate.of(2016, 6, 1);
         service.countOrders(testDate);
         verify(mockRepository, times(1)).getOrdersOnOrAfter(testDate);
     }
+   
 }
