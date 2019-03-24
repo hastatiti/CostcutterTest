@@ -2,6 +2,10 @@ DROP DATABASE IF EXISTS practicaltest;
 CREATE DATABASE practicaltest;
 USE practicaltest;
 
+--added following two lines for connection problems to mysql 
+--SET SQL_SAFE_UPDATES = 0;
+--SET GLOBAL log_bin_trust_function_creators =1;  
+
 SET @seed = 5;
 SET @customers = 20000;
 SET @orders = 30000;
